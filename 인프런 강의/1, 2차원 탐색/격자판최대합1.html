@@ -1,0 +1,62 @@
+<script>
+  function solution(n, arr) {
+    let answer;
+
+    // 행, 열, 대각선 별로 최대값 갱신해서 받을 변수 선언
+    let rowMax = Number.MIN_SAFE_INTEGER;
+    let colMax = Number.MIN_SAFE_INTEGER;
+    let digMax1 = Number.MIN_SAFE_INTEGER;
+    let digMax2 = Number.MIN_SAFE_INTEGER;
+
+    // 세 개의 최대합 값을 담아둘 배열 선언
+
+    let maxNums = [];
+
+    // 배열 탐색하면서, 조건에 따라 합을 배열에 입력
+
+    // 합을 구하고, 비교하는 이중 for문
+    for (let i = 0; i < n; i++) {
+      // 합을 담아줄 변수
+      let rowSum = 0;
+      let colSum = 0;
+      let digSum1 = 0;
+      let digSum2 = 0;
+
+      for (let j = 0; j < n; j++) {
+        // 대각선 코드(조건부라)
+        if (i === j) {
+          digSum1 += arr[i][j];
+        }
+
+        if (i + j === n) {
+          if (i <= j) digSum2 += arr[i][j];
+          else digSum2 += arr[j][i];
+          console.log(arr[i][j]);
+        }
+        // 행 코드
+        rowSum += arr[i][j];
+
+        // 열 코드
+        colSum += arr[j][i];
+      }
+      if (digSum1 > digMax1) digMax1 = digSum1;
+      if (digSum2 > digMax2) digMax2 = digSum2;
+      if (rowSum > rowMax) rowMax = rowSum;
+      if (colSum > colMax) colMax = colSum;
+    }
+    console.log(colMax, rowMax, digMax1, digMax2);
+    maxNums.push(colMax, rowMax, digMax1, digMax2);
+    console.log(maxNums);
+    // 열의 합을 구하고, 비교하는 이중 for문
+    return answer;
+  }
+
+  const array = [
+    [10, 13, 10, 12, 15],
+    [12, 39, 30, 23, 11],
+    [11, 25, 50, 53, 15],
+    [19, 27, 29, 37, 27],
+    [19, 13, 30, 13, 19],
+  ];
+  console.log(solution(5, array));
+</script>
