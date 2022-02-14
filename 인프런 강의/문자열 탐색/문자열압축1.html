@@ -1,0 +1,54 @@
+내 풀이
+<script>
+  // 풀이계획:
+  // 문자열 탐색하면서, 다음문자/이전문자 중 하나가 같으면, count++하고, 같지 않을 때 문자와 count 빈 문자열에 더해주고 count 초기화 하는 식으로
+  function solution(s) {
+    let answer = "";
+    let count = 1;
+    for (let i = 0; i < s.length; i++) {
+      // 문자가 하나인경우
+      if (count === 1 && s[i] !== s[i + 1]) {
+        answer += s[i];
+      }
+      // 다음 문자가 현재 문자와 같은 경우
+      else if (s[i] === s[i + 1]) {
+        count++;
+      }
+      // count가 1 보다 크고(문자가 2개 이상 중복되었고), 현재 문자와 다음 문자가 일치하지 않는 경우
+      else if (count >= 2 && s[i] !== s[i + 1]) {
+        answer += s[i];
+        answer += count;
+        count = 1;
+      }
+    }
+    return answer;
+  }
+
+  let str = "KKHSSSSSSSE";
+  console.log(solution(str));
+</script>
+
+강의 풀이
+<script>
+  function solution(s) {
+    let answer = "";
+    let cnt = 1;
+    // 마지막 문자도 i+1과 비교해줄수 있도록 빈 문자열 추가
+    s = s + " ";
+    // 내 풀이에 비해서 비교 로직을 더 함축적으로 표현함
+    for (let i = 0; i < s.length - 1; i++) {
+      if (s[i] === s[i + 1]) cnt++;
+      // else 문 안에 조건식으로 추가해서 불필요한 코드를 줄였음.
+      else {
+        answer += s[i];
+        // 문자열에 추가하는 것이므로 cnt 타입을 안전하게 string으로 바꾸어주는 것(현재는 number임)
+        if (cnt > 1) answer += String(cnt);
+        cnt = 1;
+      }
+    }
+    return answer;
+  }
+
+  let str = "KKHSSSSSSSE";
+  console.log(solution(str));
+</script>

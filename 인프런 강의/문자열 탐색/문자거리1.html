@@ -1,0 +1,43 @@
+<script>
+  function solution(s, t) {
+    let answer = [];
+    let count = 0;
+    let arr = [];
+    let revArr = [];
+    //  원래순서대로 e 와의 거리 숫자로 나타내서 하나의 배열에 push
+    for (let x of s) {
+      if (x !== t) {
+        count++;
+        arr.push(count);
+      } else {
+        count = 0;
+        arr.push(count);
+      }
+    }
+    // 뒤에서부터 e와의 거리 숫자로 나타내서 배열에 정리
+    for (let x of s.split("").reverse().join("")) {
+      if (x !== t) {
+        count++;
+        revArr.push(count);
+      } else {
+        count = 0;
+        revArr.push(count);
+      }
+    }
+    revArr = revArr.reverse();
+
+    // 두 배열 비교해서 더 작은 숫자 answer배열에 정리
+    for (let i = 0; i < arr.length; i++) {
+      answer.push(Math.min(arr[i], revArr[i]));
+    }
+
+    return answer;
+  }
+
+  let str = "teachermode";
+  console.log(solution(str, "e"));
+
+  // 그냥 감으로 앞에서부터 거리를 잰 배열과, 뒤에서부터 거리를 잰 배열 두개를 비교했는데 이게 무슨 의미인지 몰랐음
+  // -> 이건 왼쪽으로 가장 가까운 e 와의 거리 vs 오른쪽으로 가장 가까운 e 와의 거리를 비교하는 것과도 같은거였음
+  // 그래도 기본적인 논리는 비슷하게 풀었음
+</script>

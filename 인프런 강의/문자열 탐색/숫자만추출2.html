@@ -1,0 +1,19 @@
+isNaN() 메서드를 활용한 풀이
+<script>
+  function solution(s) {
+    let answer = "";
+    // 문자열 각각 문자에 대해서 검사
+    for (let x of s) {
+      // isNaN(value) -> 매개변수가 숫자가 아니면 true, 숫자면 false 반환. 즉 !isNaN(x)라는 조건은 x가 숫자이면 true
+      if (!isNaN(x)) answer += x;
+    }
+    // 정수로 변환해준 숫자문자열을 return
+    return parseInt(answer);
+  }
+  let str = "g0en2T0s8eSoft";
+  console.log(solution(str));
+  // 배운점
+  // 1. 로직에서 !연산자 활용해서 간단하게 표현하고 사고하는 방법 연습
+  // 2. 정수로 변환하는 메서드 활용
+  // 3. 문자열에 더해줄때는 += 연산자 활용가능함
+</script>

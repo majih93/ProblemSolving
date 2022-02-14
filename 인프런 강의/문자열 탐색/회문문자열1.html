@@ -1,0 +1,21 @@
+<script>
+  let word = "gooG";
+  console.log(word.length);
+  console.log(word.toUpperCase().split("").reverse().join(""));
+  let word2 = word.toUpperCase().split("").reverse().join("");
+  console.log(word2 === word.toUpperCase());
+
+  function solution(str) {
+    let answer = "NO";
+    // 문자열 뒤집은 문자를 다른 변수에 저장
+    let strRev = str.toUpperCase().split("").reverse().join("");
+    // 입력된 문자열 vs 뒤집은 문자열 비교(대문자로 변환해서)
+    if (str.toUpperCase() === strRev) {
+      answer = "YES";
+    }
+
+    return answer;
+  }
+
+  console.log(solution("areyouoUoyeRa"));
+</script>
