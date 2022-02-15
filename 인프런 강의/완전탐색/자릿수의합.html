@@ -1,0 +1,75 @@
+내 풀이
+<script>
+  function solution(arr) {
+    let answer;
+    let maxSum = Number.MIN_SAFE_INTEGER;
+
+    for (let x of arr) {
+      // 배열의 각 숫자에 대해 자릿수의 합을 구하고,
+      let sum = x
+        .toString()
+        .split("")
+        .reduce((a, b) => a * 1 + b * 1);
+      console.log(x, sum, maxSum);
+      // 이전 최대값과 비교해서 더 크다면 최대값을 재할당하고 answer에 해당 숫자를 저장
+      if (sum > maxSum) {
+        console.log("case1");
+        maxSum = sum;
+        answer = x;
+      }
+      // 이전 최대값과 최대값이 같다면, answer에 저장해둔 값과 x값을 비교해서 더 큰수를 answer에 저장
+      else if (sum === maxSum) {
+        console.log("case2");
+        answer = Math.max(answer, x);
+      }
+      console.log(answer);
+    }
+
+    return answer;
+  }
+  let numArr = [128, 460, 603, 40, 521, 137, 123];
+  console.log(solution(numArr));
+
+  // 의문점
+  // 20번줄에서 ((sum = maxSum)) 하니까 결과가 완전 다르게 나왔는데 이유가 뭘까?
+</script>
+
+강의 풀이
+
+<script>
+  function solution(n, arr) {
+    let answer,
+      max = Number.MIN_SAFE_INTEGER;
+    for (let x of arr) {
+      // 자릿수 합을 저장할 변수sum과, x는 바뀌면 안되므로 x를 대신해줄 변수tmp로 초기화
+      let sum = 0,
+        tmp = x;
+
+      // tmp가 0 이 될때까지 반복되는 조건문
+      // sum 에 tmp를 10으로 나눈 값(=== 1의 자리수)를 누적하고, tmp를 10으로나눈 값의 소수점을 버림(ex) 12.8 -> 12) 즉 일의자리 없애버리고 자릿수 하나씩
+      // 내리는 논리
+      while (tmp) {
+        sum += tmp % 10;
+        tmp = Math.floor(tmp / 10);
+      }
+      // 자릿수 합을 저장한 sum변수와 이전 최대값 가지고 있는 max 비교해서 더 크다면 변수 대체
+      if (sum > max) {
+        max = sum;
+        answer = x;
+      } else if (sum === max) {
+        // 나는 Math.max()메서드 활용했는데 굳이 그럴 필요가 없었네. 그냥 같을 때 -> 더 큰가? 아니면 아무일도 안해도 되니까 조건식으로 해서
+        // 조건이 일치하지 않으면 실행을 아예 안해버리면 됨.
+        // 내가 한 코드는 무조건 Math.max 메서드가 실행됨.
+        if (x > answer) answer = x;
+      }
+    }
+    return answer;
+  }
+
+  let arr = [128, 460, 603, 40, 521, 137, 123];
+  console.log(solution(7, arr));
+
+  // 1. 0 === false (JS에서 false 로 간주되는 값들)
+  // 2. Math.floor(number) 메서드는 입력된 숫자보다 크지 않은 최대의 정수를 출력
+  // 3. 조건식을 더 단순하게 따질 수 있는 방법을 찾아야함(알고리즘 처럼, ex) 더 큰가?에 대해 yes 일때만 코드 실행 이런식으로)
+</script>

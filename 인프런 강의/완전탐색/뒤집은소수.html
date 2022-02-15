@@ -1,0 +1,64 @@
+내 풀이
+<script>
+  // 숫자 뒤집는 코드 -> 뒤집은 숫자에 대해 소수 판별 진행하는 코드
+  function solution(arr) {
+    let answer = [];
+    // map메서드를 활용해 뒤집은 새로운 배열 revArr변수에 저장
+    let revArr = arr.map((x) =>
+      parseInt(x.toString().split("").reverse().join(""))
+    );
+
+    // 소수판별 함수 생성
+    function isPrime(num) {
+      if (num === 1) return false;
+      if (num === 2) return true;
+
+      for (let i = 2; i < Math.floor(Math.sqrt(num)); i++) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    }
+
+    // 소수판별 (Math.sqrt()메서드 활용해서 N의 제곱근까지만 나누어서 계산하는 방법 -> 시간복잡도가 O(루트 N) 로 가장 빠르다. )
+    for (let x of revArr) {
+      if (isPrime(x)) answer.push(x);
+    }
+
+    return answer;
+  }
+
+  let numArr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+  console.log(solution(numArr));
+</script>
+
+강의 풀이
+<script>
+  // 함수 밖에 선언/ 안에 선언 어떤 차이가 있는지
+  function isPrime(num) {
+    if (num === 1) return false;
+    for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+      if (num % i === 0) return false;
+    }
+    return true;
+  }
+
+  function solution(arr) {
+    let answer = [];
+    for (let x of arr) {
+      let res = 0;
+      // 메서드체이닝이 아니라, 직접 수식으로 반복문 활용해서 구현 -> 이런 수학적 technique 필요할듯
+      while (x) {
+        let t = x % 10;
+        res = res * 10 + t;
+        x = parseInt(x / 10);
+      }
+      if (isPrime(res)) answer.push(res);
+    }
+    return answer;
+  }
+
+  let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+  console.log(solution(arr));
+
+  // 1. 메서드로 해결하는거보다, 수학적으로 접근해서 풀어보자
+</script>

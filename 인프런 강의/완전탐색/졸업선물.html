@@ -1,0 +1,55 @@
+내 풀이
+<script>
+  function solution(total, arr) {
+    let answer = 0;
+    // 비용 총합이 낮은 순서대로 입력배열 정렬
+    arr.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+    // 각 배열마다 할인되었다는 가정 하에 모든 경우의 수 탐색
+    for (let i = 0; i < arr.length; i++) {
+      let money = total - (arr[i][0] / 2 + arr[i][1]);
+      let cnt = 1;
+      for (let j = 0; j < arr.length; j++) {
+        if (j !== i && arr[j][0] + arr[j][1] > money) break;
+        if (j !== i && arr[j][0] + arr[j][1] <= money) {
+          money -= arr[j][0] + arr[j][1];
+          cnt++;
+        }
+      }
+      answer = Math.max(answer, cnt);
+    }
+
+    return answer;
+  }
+
+  const array = [
+    [6, 6],
+    [2, 2],
+    [4, 3],
+    [4, 5],
+    [10, 3],
+  ];
+  console.log(solution(28, array));
+
+  // 못풀었다..
+</script>
+
+강의 풀이
+<script>
+  // 총비용을 기준으로 배열 정렬
+  // 쿠폰 조건이 없다면, 제일 싼 물건부터 해서 최대값이 채워질때까지 사면 됨
+  // 어떤 상품을 할인 받는게 최적의 선택인지에 대한 기준이 없다 === 모든 경우를 탐색해서 최적의 경우를 찾아야한다.
+  // 여기까지 알았으면, 그 다음 문제는 바로 모든 경우가 무엇인지 정확하게 인지하고, 어떻게 모든 경우를 탐색할지 구상하는것
+  // 모든 경우를 탐색하려면, 독립적인 case로 나눠서 총합과 같게 해야함
+  // 여기서는 할인되는 아이템을 기준으로 나눠서 생각하면 모든 경우의 수를 고려할 수 있음.
+  // 완전탐색..!
+  function solution() {}
+
+  const array2 = [
+    [6, 6],
+    [2, 2],
+    [4, 3],
+    [4, 5],
+    [10, 3],
+  ];
+  console.log(solution(array));
+</script>
