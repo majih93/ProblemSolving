@@ -1,0 +1,53 @@
+내 풀이
+
+<script>
+  // 부분 수열
+  // tip: 부분 수열이라는거. 시작점을 for문에서 증가되는 인덱스로 잡고(첫 번째 포인터) 두 번째 포인터를 조건부로 증가시키면서 생각하면 됨
+
+  function solution(n, arr) {
+    let answer = 0;
+
+    // 각 for문이 의미하는 것은?
+    // 시작점이 0번 인덱스에서 시작해서, 마지막 인덱스까지 가는 것
+    for (let i = 0; i < arr.length; i++) {
+      let sum = 0;
+      let rt = i;
+      // 각 시작점에서 연속되는 부분수열의 크기를 늘려가면서 n이 되는지 보고,
+      // n 보다 크거나, 두 번째 포인터가 마지막 인덱스를 벗어나게 되면 바로 종료되는 조건문으로..
+      while (sum !== n && sum < n && rt < arr.length) {
+        sum += arr[rt];
+        rt++;
+      }
+      if (sum === n) answer++;
+    }
+
+    return answer;
+  }
+
+  const array1 = [1, 2, 1, 3, 1, 1, 1, 2];
+  // console.log(solution(6, array1));
+</script>
+
+강의 풀이
+<script>
+  function solution(n, arr) {
+    let answer = 0,
+      lt = 0,
+      sum = 0;
+    for (let rt = 0; rt < arr.length; rt++) {
+      sum += arr[rt];
+      if (sum === n) answer++;
+      while (sum >= n) {
+        sum -= arr[lt++];
+        if (sum === n) answer++;
+      }
+    }
+    return answer;
+  }
+
+  const array2 = [1, 2, 1, 3, 1, 1, 1, 2];
+  console.log(solution(6, array2));
+
+  // 이게 가장 대표적인 투포인터 알고리즘 문제임
+  // 이 논리를 이해하는게 매우 중요하다.
+</script>
