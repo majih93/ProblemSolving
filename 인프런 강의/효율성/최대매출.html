@@ -1,0 +1,21 @@
+내 풀이
+<script>
+  function solution(k, arr) {
+    // 가능한 최소한 값으로 answer 초기화, 비교해서 answer에 최대값 비교해서 더 큰 값이면 answer에 해당 매출액 할당
+    let answer = Number.MIN_SAFE_INTEGER;
+    // 3일치 매출액이니까, 뒤에서 3번째 인덱스까지만 탐색
+    for (let i = 0; i < arr.length - 2; i++) {
+      let sum = 0;
+      let p2 = i;
+      while (p2 < i + 3) {
+        sum += arr[p2++];
+      }
+      if (sum > answer) answer = sum;
+    }
+
+    return answer;
+  }
+
+  const array = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+  console.log(solution(3, array));
+</script>
