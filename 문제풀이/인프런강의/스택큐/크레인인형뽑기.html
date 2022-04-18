@@ -1,0 +1,125 @@
+<script>
+  // // 시도 1
+
+  // function solution(boardArr, movesArr) {
+  //   // 출력해야하는 값: 터져서 사라진 인형의 개수(터트린 횟수가 아니다)
+  //   let answer = 0;
+  //   console.log(boardArr);
+  //   // 인형을 넣는 바구니(stack)
+  //   const itemContainer = [];
+
+  //   // 입력받은 숫자에 대해서, boardArr내 열에서 집는 행위 구현
+  //   function getItem(rownum) {
+  //     let pickedUpItem;
+  //     // 해당 열이 빈 경우 아무일도 일어나지 않음
+  //     if (boardArr[boardArr.length - 1][rownum - 1] === 0) {
+  //       return;
+  //     }
+
+  //     // 입력 받은 숫자에 해당되는 열에 가장 위에 있는 넘
+  //     for (let i = 0; i < boardArr.length; i++) {
+  //       // 반복분기별로 평가하려는 위치
+  //       const checkedBox = boardArr[i][rownum - 1];
+  //       // 해당 숫자가 0이면 다음 배열로
+  //       if (checkedBox === 0) {
+  //         continue;
+  //       } else {
+  //         pickedUpItem = checkedBox;
+  //         boardArr[i].splice(rownum - 1, 1, 0);
+  //         break;
+  //       }
+  //     }
+  //     console.log(boardArr);
+  //     return pickedUpItem;
+  //   }
+
+  //   //movesArr에 대해서 for문으로 돌면서, 해당되는 숫자를 활용해서 필요한 로직 실행
+  //   for (let x of movesArr) {
+  //     // 해당 열 비었으면 아무일도 일어나지 않음
+  //     if (getItem(x) === undefined) continue;
+
+  //     // 해당 열에 아이템 있으면..
+  //     // 바구니가 비어있으면
+  //     if (itemContainer.length === 0) {
+  //       itemContainer.push(getItem(x));
+  //     } else if (itemContainer.length !== 0) {
+  //       // 아이템이 같은 경우..
+  //       if (itemContainer[itemContainer] === getItem(x)) {
+  //         itemContainer.pop();
+  //         answer += 2;
+  //         continue;
+  //       }
+  //       // 다른 경우..
+  //       itemContainer.push(getItem(x));
+  //     }
+  //   }
+
+  //   return answer;
+  // }
+  // 처참히 실패..왜 board가 00000이 될까?
+
+  // 시도 2
+  // 나누려고 하지말고 일단 문제를 해결해보자
+  // 집는다
+  // 넣는다
+  // 겹치면 삭제한다
+  // function solution(boardArr, movesArr) {
+  //   let answer = 0;
+
+  //   console.log(boardArr);
+  //   const stack = [];
+  //   // moves 배열을 돌면서 각 인자에 해당되는 열에 대해 로직 실행
+  //   for (let x of movesArr) {
+  //     // 해당 열 제일 밑에 비었으면 다음 분기로
+  //     if (boardArr[boardArr.length - 1][x - 1] === 0) continue;
+  //     for (let i = 0; i < boardArr.length; i++) {
+  //       // 해당 열에서 보는 위치가 0이면 다음 반복으로
+  //       if (boardArr[i][x - 1] === 0) continue;
+  //       // stack 상태 체크
+  //       if (stack.length === 0) {
+  //         // 꺼내서 === 제거해서
+  //         boardArr[i].splice(x - 1, 1, 0);
+  //         // 바구니에 넣고
+  //         stack.push(boardArr[i][x - 1]);
+  //         // 반복문 종료
+  //         console.log(boardArr);
+  //         break;
+  //       } else if (stack.length !== 0) {
+  //         // 제거하고
+  //         boardArr[i].splice(x - 1, 1, 0);
+  //         if (stack[stack.length - 1] === boardArr[i][x - 1]) {
+  //           // stack에서 제거
+  //           stack.pop();
+  //           // 인형 두개 터진거 기록
+  //           answer += 2;
+  //           // 해당 열 처리 종료
+  //           console.log(boardArr);
+  //           break;
+  //         } else {
+  //           // 바구니에 넣고
+  //           stack.push(boardArr[i][x - 1]);
+  //           // 열 처리 종료
+  //           console.log(boardArr);
+  //           break;
+  //         }
+  //       }
+  //     }
+  //   }
+  //   return answer;
+  // }
+
+  // 실패..
+
+  // 시도 3
+
+  const board = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 3],
+    [0, 2, 5, 0, 1],
+    [4, 2, 4, 4, 2],
+    [3, 5, 1, 3, 1],
+  ];
+
+  const moves = [1, 5, 3, 5, 1, 2, 1, 4];
+  console.log(solution(board, moves));
+</script>

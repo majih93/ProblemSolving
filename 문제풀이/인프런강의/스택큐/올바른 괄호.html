@@ -1,0 +1,19 @@
+<script>
+  function solution(str) {
+    // 스택을 구현할 배열 선언
+    const stack = [];
+
+    for (let x of str) {
+      if (x === "(") stack.push(x);
+      else {
+        if (stack.length === 0) return "NO";
+        stack.pop();
+      }
+    }
+    if (stack.length > 0) return "NO";
+    return "YES";
+  }
+
+  const 괄호모음 = "()";
+  console.log(solution(괄호모음));
+</script>
