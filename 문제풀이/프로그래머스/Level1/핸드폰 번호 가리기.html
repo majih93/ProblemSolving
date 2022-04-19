@@ -1,0 +1,9 @@
+<script>
+  function solution(phone_number) {
+    var answer = "";
+    let lastFour = phone_number.slice(phone_number.length - 4);
+
+    answer = "*".repeat(phone_number.length - 4) + lastFour;
+    return answer;
+  }
+</script>
