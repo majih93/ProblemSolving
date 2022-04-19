@@ -1,0 +1,15 @@
+<script>
+  function solution(n, m) {
+    let result = "";
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        result += "*";
+      }
+      result += "\n";
+    }
+
+    return result;
+  }
+
+  console.log(solution(5, 3));
+</script>
