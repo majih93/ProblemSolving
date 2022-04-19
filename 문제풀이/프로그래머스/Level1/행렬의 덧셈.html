@@ -1,0 +1,33 @@
+<script>
+  //시도 1
+  // function solution(arr1, arr2) {
+  //   let answer = [[], []];
+  //   if (arr1[0].length === 1) {
+  //     answer[0].push(arr1[0][0] + arr2[0][0]);
+  //     answer[1].push(arr1[1][0] + arr2[1][0]);
+  //   } else {
+  //     for (let i = 0; i < arr1[0].length; i++) {
+  //       answer[0].push(arr1[0][i] + arr2[0][i]);
+  //       answer[1].push(arr1[1][i] + arr2[1][i]);
+  //     }
+  //   }
+
+  //   return answer;
+  // }
+  // 음 테스트케이스가 다 실패뜨는데 왜인지 모르겠다.
+
+  // 시도2
+  function solution(arr1, arr2) {
+    let answer = [];
+
+    for (let i = 0; i < arr1.length; i++) {
+      let temp = [];
+      for (let j = 0; j < arr1[i].length; j++) {
+        temp.push(arr1[i][j] + arr2[i][j]);
+      }
+      answer.push(temp);
+    }
+
+    return answer;
+  }
+</script>
