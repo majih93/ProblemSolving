@@ -1,0 +1,16 @@
+<script>
+  function solution(nums) {
+    let answer;
+    let len = nums.length;
+    let kind = 0;
+
+    for (let i = 0; i < len; i++) {
+      if (nums.indexOf(nums[i]) === i) kind++;
+    }
+
+    if (len / 2 > kind) {
+      answer = kind;
+    } else answer = len / 2;
+    return answer;
+  }
+</script>
