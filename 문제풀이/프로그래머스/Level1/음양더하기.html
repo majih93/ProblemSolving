@@ -1,0 +1,13 @@
+<script>
+  function solution(absolutes, signs) {
+    let answer;
+
+    for (let i = 0; i < absolutes.length; i++) {
+      if (signs[i] === false) {
+        absolutes.splice(i, 1, absolutes[i] * -1);
+      }
+    }
+    answer = absolutes.reduce((acc, curr) => acc + curr, 0);
+    return answer;
+  }
+</script>
