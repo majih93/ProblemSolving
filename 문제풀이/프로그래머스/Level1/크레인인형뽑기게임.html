@@ -1,0 +1,27 @@
+<script>
+  function solution(board, moves) {
+    let answer = 0;
+    const basket = [];
+
+    for (let i = 0; i < moves.length; i++) {
+      let m = moves[i] - 1; // 인덱스 값은 실제 값 -1 해줘야하니까 간단하게 코드 짜기 위해서
+      for (let j = 0; j < board.length; j++) {
+        let picked = board[j][m]; // 해당 실행에서 pick 된 놈
+
+        if (picked !== 0) {
+          // 뽑은 애가 0이 아니면
+          if (basket.length !== 0 && picked === basket[basket.length - 1]) {
+            //기존에 들어있고 일치하면
+            basket.pop(); // 기존에 있던 놈 하나 튕겨버리고
+            answer += 2; // 2개 제거한걸로 카운트
+          } else basket.push(picked); // 아니면 그냥 바스켓에 더해
+
+          board[j][m] = 0; // 인형 튀 나온 자리 0으로 바꿔주고
+          break; // inner 반복문 스퇍(다음j로 넘어가도록)
+        }
+      }
+    }
+
+    return answer;
+  }
+</script>
