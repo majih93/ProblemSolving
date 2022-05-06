@@ -28,7 +28,3 @@ npm start
 ```
 
 ---
-
-test
-
-test2
